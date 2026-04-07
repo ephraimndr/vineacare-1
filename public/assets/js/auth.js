@@ -21,14 +21,8 @@ if (authNavLink) {
   authNavLink.addEventListener('click', (e) => {
     e.preventDefault();
     if (auth.currentUser) {
-      // Sign out
-      signOut(auth).then(async () => {
-        console.log("Signed out successfully");
-        await fetch('/api/sessionLogout', { method: 'POST' });
-        window.location.reload();
-      }).catch((error) => {
-        console.error("Sign out error", error);
-      });
+      // Navigate to profile instead of signing out
+      window.location.href = `/profile/${auth.currentUser.uid}`;
     } else {
       // Sign in
       signInWithPopup(auth, provider)
@@ -53,7 +47,7 @@ onAuthStateChanged(auth, (user) => {
     // User is signed in, replace icon with profile picture
     const profilePicUrl = user.photoURL;
     authNavLink.innerHTML = `<img src="${profilePicUrl}" alt="${user.displayName}" style="width: 24px; height: 24px; border-radius: 50%; margin-left: 10px; object-fit: cover;">`;
-    authNavLink.title = `Logout (${user.displayName})`;
+    authNavLink.title = `Profile (${user.displayName})`;
   } else {
     // User is signed out, show default icon
     authNavLink.innerHTML = `<i class="bi bi-person-circle" style="font-size: 1.1rem; margin-left: 10px;"></i>`;
