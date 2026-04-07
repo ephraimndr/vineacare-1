@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Show typing indicator
     const typingIndicator = document.createElement("div");
     typingIndicator.className = "chat-message ai-message typing-indicator";
-    typingIndicator.innerText = "...";
+    typingIndicator.innerHTML = '<span class="dot"></span><span class="dot"></span><span class="dot"></span>';
     chatBody.appendChild(typingIndicator);
     chatBody.scrollTop = chatBody.scrollHeight;
 

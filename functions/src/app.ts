@@ -37,7 +37,7 @@ app.use(async (req, res, next) => {
 
 // Routes
 app.get("/", (req, res) => {
-  res.render("index", {title: "index.html"});
+  res.render("index", { title: "Home" });
 });
 
 app.get("/index.html", (req, res) => {
@@ -45,7 +45,7 @@ app.get("/index.html", (req, res) => {
 });
 
 app.get("/forum", (req, res) => {
-  res.render("forum", {title: "forum.html"});
+  res.render("forum", { title: "Forum" });
 });
 
 app.get("/forum.html", (req, res) => {
@@ -62,11 +62,11 @@ app.post("/api/sessionLogin", async (req, res) => {
 
   const expiresIn = 60 * 60 * 24 * 5 * 1000; // 5 days
   try {
-    const sessionCookie = await admin.auth().createSessionCookie(idToken, {expiresIn});
+    const sessionCookie = await admin.auth().createSessionCookie(idToken, { expiresIn });
     const isEmulator = process.env.FUNCTIONS_EMULATOR === "true";
-    const options = {maxAge: expiresIn, httpOnly: true, secure: !isEmulator, path: "/"};
+    const options = { maxAge: expiresIn, httpOnly: true, secure: !isEmulator, path: "/" };
     res.cookie("__session", sessionCookie, options);
-    res.json({status: "success"});
+    res.json({ status: "success" });
   } catch (error) {
     console.error("Session login error:", error);
     res.status(401).send("UNAUTHORIZED REQUEST!");
@@ -74,8 +74,8 @@ app.post("/api/sessionLogin", async (req, res) => {
 });
 
 app.post("/api/sessionLogout", (req, res) => {
-  res.clearCookie("__session", {path: "/"});
-  res.json({status: "success"});
+  res.clearCookie("__session", { path: "/" });
+  res.json({ status: "success" });
 });
 
 export default app;
