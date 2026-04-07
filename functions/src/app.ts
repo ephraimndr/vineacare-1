@@ -20,7 +20,7 @@ app.set('view engine', 'ejs');
 app.use(async (req, res, next) => {
   const sessionCookie = req.cookies.__session || '';
   let uid: string | null = null;
-  
+
   if (sessionCookie) {
     try {
       const decodedClaims = await admin.auth().verifySessionCookie(sessionCookie, true);
@@ -37,7 +37,7 @@ app.use(async (req, res, next) => {
 
 // Routes
 app.get('/', (req, res) => {
-  res.render('index', { title: 'index.html' });
+  res.render('index', { title: 'Home' });
 });
 
 app.get('/index.html', (req, res) => {
@@ -45,7 +45,7 @@ app.get('/index.html', (req, res) => {
 });
 
 app.get('/forum', (req, res) => {
-  res.render('forum', { title: 'forum.html' });
+  res.render('forum', { title: 'Community Forum' });
 });
 
 app.get('/forum.html', (req, res) => {
