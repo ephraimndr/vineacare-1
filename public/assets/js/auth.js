@@ -22,16 +22,25 @@ if (authNavLink) {
     e.preventDefault();
     if (auth.currentUser) {
       // Sign out
-      signOut(auth).then(() => {
+      signOut(auth).then(async () => {
         console.log("Signed out successfully");
+        await fetch('/api/sessionLogout', { method: 'POST' });
+        window.location.reload();
       }).catch((error) => {
         console.error("Sign out error", error);
       });
     } else {
       // Sign in
       signInWithPopup(auth, provider)
-        .then((result) => {
+        .then(async (result) => {
           console.log("Logged in:", result.user.displayName);
+          const idToken = await result.user.getIdToken();
+          await fetch('/api/sessionLogin', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ idToken })
+          });
+          window.location.reload();
         }).catch((error) => {
           console.error("Login error:", error);
         });

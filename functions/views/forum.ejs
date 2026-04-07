@@ -1,0 +1,36 @@
+<%- include('partials/header') %>
+
+<main id="main" style="margin-top: 60px; min-height: 50vh;">
+  <section class="breadcrumbs" style="padding-top: 40px; padding-bottom: 20px; background-color: #f7f9fc;">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>Community Forum</h2>
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li>Forum</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="inner-page">
+    <div class="container">
+      <% if (uid) { %>
+        <div class="alert alert-success mt-4 shadow-sm" style="border-radius: 10px;">
+          <h4 class="alert-heading">Welcome back!</h4>
+          <p class="mb-0">Your logged in User ID is: <strong><%= uid %></strong></p>
+        </div>
+        <div class="mt-4">
+          <p class="text-muted">Forum discussions will be listed here. This area is under construction.</p>
+        </div>
+      <% } else { %>
+        <div class="alert alert-warning mt-5 text-center shadow-sm" style="border-radius: 10px;">
+          <h4 class="alert-heading"><i class="bi bi-exclamation-triangle-fill"></i> You are not logged in!</h4>
+          <p class="mb-0 mt-3">Please ask the user to log in using the profile icon in the navigation bar above to view and participate in the community forum.</p>
+        </div>
+      <% } %>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/footer') %>
