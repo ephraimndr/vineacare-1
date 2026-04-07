@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-functions.js";
+import { getFunctions, httpsCallable, connectFunctionsEmulator } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-functions.js";
 
 // Initialize Firebase (Reuse from auth.js)
 const firebaseConfig = {
@@ -13,6 +13,10 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const functions = getFunctions(app);
+
+if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.protocol === "file:") {
+  connectFunctionsEmulator(functions, "127.0.0.1", 5001);
+}
 
 // Update this to match your actual deployed Genkit flow / Cloud Function name
 const chatWithVineaCareAI = httpsCallable(functions, "chatWithVineaCareAI");
