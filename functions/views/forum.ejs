@@ -17,57 +17,60 @@
       <div class="container">
         <% if (uid) { %>
           <div id="logged-in-user-data" data-uid="<%= uid %>" hidden></div>
-          <!-- Posting Form -->
-          <div class="post-form-container shadow-sm">
-            <form id="compose-form">
-              <textarea id="post-text" placeholder="What's happening?" maxlength="350"></textarea>
-              <div class="post-form-footer">
-                <div class="media-preview" id="media-preview-container"></div>
-                <div class="form-actions">
-                  <div class="media-buttons">
-                    <label class="media-btn" title="Add Image (Max 10MB)">
-                      <i class="bi bi-image"></i>
-                      <input type="file" id="upload-image" accept="image/*" multiple hidden>
-                    </label>
-                    <label class="media-btn" title="Add Video (Max 2 min)">
-                      <i class="bi bi-camera-video"></i>
-                      <input type="file" id="upload-video" accept="video/mp4,video/webm" multiple hidden>
-                    </label>
-                    <label class="media-btn" title="Add Audio (Max 3 min)">
-                      <i class="bi bi-mic"></i>
-                      <input type="file" id="upload-audio" accept="audio/mpeg,audio/wav" multiple hidden>
-                    </label>
-                  </div>
-                  <div class="action-right">
-                    <span id="char-count">0 / 350</span>
-                    <button type="submit" id="submit-post-btn" class="btn btn-primary rounded-pill">Post</button>
+          
+          <div class="forum-content-wrapper">
+            <!-- Posting Form -->
+            <div class="post-form-container shadow-sm">
+              <form id="compose-form">
+                <textarea id="post-text" placeholder="What's happening?" maxlength="350"></textarea>
+                <div class="post-form-footer">
+                  <div class="media-preview" id="media-preview-container"></div>
+                  <div class="form-actions">
+                    <div class="media-buttons">
+                      <label class="media-btn" title="Add Image (Max 10MB)">
+                        <i class="bi bi-image"></i>
+                        <input type="file" id="upload-image" accept="image/*" multiple hidden>
+                      </label>
+                      <label class="media-btn" title="Add Video (Max 2 min)">
+                        <i class="bi bi-camera-video"></i>
+                        <input type="file" id="upload-video" accept="video/mp4,video/webm" multiple hidden>
+                      </label>
+                      <label class="media-btn" title="Add Audio (Max 3 min)">
+                        <i class="bi bi-mic"></i>
+                        <input type="file" id="upload-audio" accept="audio/mpeg,audio/wav" multiple hidden>
+                      </label>
+                    </div>
+                    <div class="action-right">
+                      <span id="char-count">0 / 350</span>
+                      <button type="submit" id="submit-post-btn" class="btn btn-primary rounded-pill">Post</button>
+                    </div>
                   </div>
                 </div>
+              </form>
+            </div>
+
+            <!-- Feed Filters -->
+            <div class="feed-filters mt-4 mb-3">
+              <ul class="nav nav-pills" id="feed-filter-tabs">
+                <li class="nav-item">
+                  <a class="nav-link active" data-sort="time" href="#">Latest</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-sort="likes" href="#">Top Likes</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-sort="comments" href="#">Most Commented</a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Feed Container -->
+            <div id="feed-container" class="feed-container">
+              <!-- Posts will be injected here via forum.js -->
+              <div class="text-center text-muted py-5" id="feed-loading">
+                <div class="spinner-border text-primary" role="status"></div>
+                <p class="mt-2">Loading posts...</p>
               </div>
-            </form>
-          </div>
-
-          <!-- Feed Filters -->
-          <div class="feed-filters mt-4 mb-3">
-            <ul class="nav nav-pills" id="feed-filter-tabs">
-              <li class="nav-item">
-                <a class="nav-link active" data-sort="time" href="#">Latest</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-sort="likes" href="#">Top Likes</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-sort="comments" href="#">Most Commented</a>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Feed Container -->
-          <div id="feed-container" class="feed-container">
-            <!-- Posts will be injected here via forum.js -->
-            <div class="text-center text-muted py-5" id="feed-loading">
-              <div class="spinner-border text-primary" role="status"></div>
-              <p class="mt-2">Loading posts...</p>
             </div>
           </div>
           <% } else { %>

@@ -9,6 +9,27 @@
   padding: 20px;
   margin-bottom: 30px;
   border: 1px solid #e1e8ed;
+  position: sticky;
+  top: 80px;
+  z-index: 100;
+}
+
+.forum-content-wrapper {
+  margin: 0 auto;
+  width: 70%;
+  transition: width 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .forum-content-wrapper {
+    width: 55%;
+  }
+}
+
+@media (min-width: 992px) {
+  .forum-content-wrapper {
+    width: 60%;
+  }
 }
 
 .post-form-container textarea {

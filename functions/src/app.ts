@@ -109,8 +109,8 @@ app.post("/api/forum/post", async (req, res) => {
       bookmarkCount: 0
     };
 
-    await admin.firestore().collection('posts').add(postData);
-    res.json({ success: true });
+    const docRef = await admin.firestore().collection('posts').add(postData);
+    res.json({ success: true, id: docRef.id });
   } catch (error) {
     console.error("Error creating post:", error);
     res.status(500).json({ error: "Internal Server Error" });

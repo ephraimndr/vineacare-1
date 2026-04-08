@@ -184,6 +184,12 @@ if (composeForm) {
         throw new Error(errorData.error || 'Failed to submit post to server');
       }
 
+      const result = await response.json();
+      console.log("Post created with UID:", result.id);
+      
+      // Optional: Inform user of the UID
+      alert(`Post published successfully! (ID: ${result.id})`);
+
       // Reset form
       postText.value = '';
       charCount.textContent = '0 / 350';
